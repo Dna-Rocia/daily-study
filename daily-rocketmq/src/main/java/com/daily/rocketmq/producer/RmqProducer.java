@@ -6,6 +6,7 @@ import com.aliyun.openservices.ons.api.PropertyKeyConst;
 import com.aliyun.openservices.ons.api.order.OrderProducer;
 import com.aliyun.openservices.ons.api.transaction.LocalTransactionChecker;
 import com.aliyun.openservices.ons.api.transaction.TransactionProducer;
+import com.aliyun.openservices.shade.com.alibaba.rocketmq.client.producer.DefaultMQProducer;
 import com.daily.rocketmq.conf.AliRmqConfig;
 import com.daily.rocketmq.conf.LocalTransactionCheckAndExecuter;
 import org.springframework.beans.factory.DisposableBean;
@@ -147,6 +148,8 @@ public class RmqProducer implements InitializingBean, DisposableBean {
      * 返回创建的{@link Producer}实例是线程安全, 可复用, 发送各个主题. 一般情况下, 一个进程中构建一个实例足够满足发送消息的需求.
      */
     private Producer createProducerInstance(){
+//        DefaultMQProducer a =new DefaultMQProducer();
+//        a.setRetryTimesWhenSendFailed(1);
         this.producer = ONSFactory.createProducer(getProducerProperties());
         // 在发送消息前，必须调用 start 方法来启动 Producer，只需调用一次即可
         this.producer.start();
