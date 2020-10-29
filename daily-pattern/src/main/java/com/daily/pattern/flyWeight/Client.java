@@ -1,5 +1,7 @@
 package com.daily.pattern.flyWeight;
 
+import com.daily.pattern.state.LiftState;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +18,18 @@ public class Client {
     public static void main(String[] args) {
         Client client = new Client();
 //        client.flyweight();
-        client.compositeFlyweight();
+//        client.compositeFlyweight();
+        client.test();
+    }
+
+    private void test(){
+        String s = "1,2,10,3";
+        String[] sarr = s.split(",");
+        List<Integer> list = new ArrayList<>();
+        for (String str:sarr ) {
+            list.add(Integer.parseInt(str));
+        }
+        System.out.println(list.contains(1));
     }
 
     private void flyweight(){
