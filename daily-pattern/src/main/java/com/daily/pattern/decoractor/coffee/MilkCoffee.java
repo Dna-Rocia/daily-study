@@ -1,4 +1,4 @@
-package com.daily.pattern.decoractor;
+package com.daily.pattern.decoractor.coffee;
 
 /**
  * @Description
@@ -13,7 +13,7 @@ public class MilkCoffee {
     }
 
     public String make(String water) {
-        return this.coffee.make(water)+"咖啡";
+        return this.coffee.make(water);
     }
 
     public Double cost() {
