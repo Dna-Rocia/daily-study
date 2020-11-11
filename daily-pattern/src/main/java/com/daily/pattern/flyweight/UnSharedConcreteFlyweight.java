@@ -1,4 +1,4 @@
-package com.daily.pattern.flyWeight;
+package com.daily.pattern.flyweight;
 
 /**
  * @Description 非共享的

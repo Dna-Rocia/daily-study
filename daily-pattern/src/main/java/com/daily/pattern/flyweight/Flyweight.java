@@ -1,4 +1,4 @@
-package com.daily.pattern.flyWeight;
+package com.daily.pattern.flyweight;
 
 /**
  * @Description  享元接口，通过这个接口传入外部状态并作用于外部状态；
@@ -8,6 +8,6 @@ package com.daily.pattern.flyWeight;
 public interface Flyweight {
 
     //一个示意性方法，参数state是外蕴状态
-    public void operation(String state);
+     void operation(String state);
 
 }

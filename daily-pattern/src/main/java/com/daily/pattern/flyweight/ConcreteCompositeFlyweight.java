@@ -1,4 +1,4 @@
-package com.daily.pattern.flyWeight;
+package com.daily.pattern.flyweight;
 
 import java.util.HashMap;
 import java.util.Map;

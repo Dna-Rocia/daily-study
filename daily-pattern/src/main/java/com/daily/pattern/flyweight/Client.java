@@ -1,6 +1,4 @@
-package com.daily.pattern.flyWeight;
-
-import com.daily.pattern.state.LiftState;
+package com.daily.pattern.flyweight;
 
 import java.util.ArrayList;
 import java.util.List;
