@@ -1,4 +1,4 @@
-package com.daily.pattern.decoractor.coffee;
+package com.daily.pattern.decorator.coffee;
 
 /**
  * @Description

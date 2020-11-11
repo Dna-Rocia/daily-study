@@ -1,4 +1,4 @@
-package com.daily.pattern.decoractor.shape;
+package com.daily.pattern.decorator.shape;
 
 /**
  * @Description 创建继承抽象类的非抽象类
@@ -17,7 +17,7 @@ public class RedShapeDecorator extends ShapeDecorator{
     }
 
     private void redBorder(){
-        System.out.println("，颜色是：红色的");
+        System.out.print("，颜色是：红色的");
     }
 
 }

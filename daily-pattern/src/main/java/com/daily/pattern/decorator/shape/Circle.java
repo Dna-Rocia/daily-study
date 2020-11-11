@@ -1,4 +1,4 @@
-package com.daily.pattern.decoractor.shape;
+package com.daily.pattern.decorator.shape;
 
 /**
  * @Description

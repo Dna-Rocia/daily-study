@@ -1,4 +1,4 @@
-package com.daily.pattern.decoractor.shape;
+package com.daily.pattern.decorator.shape;
 
 /**
  * @Description
@@ -12,13 +12,13 @@ public class Client {
         Shape redCircle = new RedShapeDecorator(new Circle());
         Shape redRectangle = new RedShapeDecorator(new Rectangle());
 
-        System.out.println("没有包装的圆：");
+        System.out.print("没有包装的圆，");
         circle.draw();
 
-        System.out.println("包装后的红色圆：");
+        System.out.print("\n"+"包装后的红色圆，");
         redCircle.draw();
 
-        System.out.println("包装后的矩形：");
+        System.out.print("\n"+"包装后的矩形：");
         redRectangle.draw();
     }
 
