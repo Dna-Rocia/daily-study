@@ -1,6 +1,7 @@
 package com.daily.export.util;
 
 
+import com.daily.common.utils.StringUtil;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -17,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class ExcelUtil {
+public class ExportExcelUtil {
     /**
      * remark
      * @date 2020/6/29

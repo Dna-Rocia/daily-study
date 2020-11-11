@@ -1,4 +1,4 @@
-package com.daily.export.util;
+package com.daily.common.utils;
 
 import org.apache.commons.lang.StringUtils;
 

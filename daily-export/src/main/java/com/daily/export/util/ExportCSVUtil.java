@@ -1,4 +1,4 @@
-package com.daily.export;
+package com.daily.export.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +18,20 @@ import java.util.*;
  * @Author ROCIA
  * @Date 2020/10/29
  */
-public abstract class CsvServiceImpl{
+public class ExportCSVUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(CsvServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(ExportCSVUtil.class);
+
+    //CSV文件分隔符
+    private final static String NEW_LINE_SEPARATOR="\n";
+    /** CSV文件列分隔符 */
+    private static final String CSV_COLUMN_SEPARATOR = ",";
+    /** CSV文件列分隔符 */
+    private static final String CSV_RN = "\r\n";
+    /** CSV文件列值的前边附加的符号**/
+    private static final String CSV_T = "\t";
+    /** CSV文件列值的符号**/
+    private static final String CSV_COLUMN = "\"";
 
     /**
      * 一次性查询后再一次性写入
@@ -68,7 +79,7 @@ public abstract class CsvServiceImpl{
     }
 
     /**
-     * 对文件内容的追加
+     * 对文件内容批量追加
      * @param dataList 数据
      * @param str 追加的StringBuilder
      * @param THEAD 表头
@@ -77,15 +88,15 @@ public abstract class CsvServiceImpl{
      */
     public void appendStr(List<LinkedHashMap<String, Object>> dataList,StringBuilder str,String[] THEAD,BufferedWriter bw) throws IOException {
         str.setLength(0);
-        for (Iterator c = dataList.iterator(); c.hasNext(); str.append("\n")){
+        for (Iterator c = dataList.iterator(); c.hasNext(); str.append(NEW_LINE_SEPARATOR)){
             Map map = (Map)c.next();
             //分批写入
             for (int k = 0; k < THEAD.length; k++){
                 Object obj = StringUtils.isEmpty(map.get(THEAD[k]))?"":map.get(THEAD[k]);
                 if (k != THEAD.length - 1) {
-                    str.append("\"" + "\t").append(obj).append("\",");
+                    str.append(CSV_COLUMN).append(CSV_T).append(obj).append(CSV_COLUMN).append(CSV_COLUMN_SEPARATOR);
                 }else {
-                    str.append("\"" + "\t").append(obj).append("\"");
+                    str.append(CSV_COLUMN).append(CSV_T).append(obj).append(CSV_COLUMN);
                 }
             }
         }
@@ -118,36 +129,36 @@ public abstract class CsvServiceImpl{
      * @param columnName 列名称
      * @param fileName 文件名称
      */
-    public String getTableColumnName(String columnName[],String fileName){
+    public String getTableColumnName(String[] columnName,String fileName){
         StringBuilder sb = new StringBuilder();
-        sb.append(fileName).append("\n");
+        sb.append(fileName).append(NEW_LINE_SEPARATOR);
         for (int i = 0; i < columnName.length; i++)
             if (i != columnName.length - 1) {
-                sb.append((new StringBuilder()).append("\"").append(columnName[i]).append("\",").toString());
+                sb.append(CSV_COLUMN).append(columnName[i]).append(CSV_COLUMN).append(CSV_COLUMN_SEPARATOR);
             } else {
-                sb.append((new StringBuilder()).append("\"").append(columnName[i]).append("\"").toString());
+                sb.append(CSV_COLUMN).append(columnName[i]).append(CSV_COLUMN);
             }
-        sb.append("\n");
+        sb.append(NEW_LINE_SEPARATOR);
         return sb.toString();
     }
 
     /**
-     * 数据转csv格式
+     * 数据一次性转csv格式
      * @param theadColumn 列数据
      * @param dataList 查询出的数据
      */
     private  String buildDataForCSV(String[] theadColumn, List dataList) {
         StringBuilder strb = new StringBuilder();
         int j =0;
-        for (Iterator i$ = dataList.iterator(); i$.hasNext(); strb.append("\n"),j++)
+        for (Iterator i$ = dataList.iterator(); i$.hasNext(); strb.append(NEW_LINE_SEPARATOR),j++)
         {
             Map map = (Map)i$.next();
             for (int i = 0; i < theadColumn.length; i++){
                 Object obj = StringUtils.isEmpty(map.get(theadColumn[i]))?"":map.get(theadColumn[i]);
                 if (i != theadColumn.length - 1) {
-                    strb.append((new StringBuilder()).append("\"").append("\t"+obj).append("\",").toString());
+                    strb.append(CSV_COLUMN).append(CSV_T).append(obj).append(CSV_COLUMN).append(CSV_COLUMN_SEPARATOR);
                 }else {
-                    strb.append((new StringBuilder()).append("\"").append("\t"+obj).append("\"").toString());
+                    strb.append(CSV_COLUMN).append(CSV_T).append(obj).append(CSV_COLUMN);
                 }
             }
         }
