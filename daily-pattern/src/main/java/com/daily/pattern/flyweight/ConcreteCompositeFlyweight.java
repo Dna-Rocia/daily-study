@@ -35,6 +35,5 @@ public class ConcreteCompositeFlyweight implements Flyweight{
             fly = files.get(o);
             fly.operation(state);
         }
-
     }
 }

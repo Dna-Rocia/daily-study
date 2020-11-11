@@ -15,41 +15,36 @@ public class Client {
 
     public static void main(String[] args) {
         Client client = new Client();
-//        client.flyweight();
-//        client.compositeFlyweight();
-        client.test();
+        client.flyweight();
+        System.out.println("==================================================");
+        client.compositeFlyweight();
     }
 
-    private void test(){
-        String s = "1,2,10,3";
-        String[] sarr = s.split(",");
-        List<Integer> list = new ArrayList<>();
-        for (String str:sarr ) {
-            list.add(Integer.parseInt(str));
-        }
-        System.out.println(list.contains(1));
-    }
-
+    /**
+     * 单纯享元模式
+     */
     private void flyweight(){
         FlyweightFactory factory = new FlyweightFactory();
-        Flyweight fly = factory.factory(new Character('a'));
+        Flyweight fly = factory.factory('a');
         fly.operation("First Call");
 
-        fly = factory.factory(new Character('b'));
+        fly = factory.factory('b');
         fly.operation("Second Call");
 
-        fly = factory.factory(new Character('a'));
+        fly = factory.factory('a');
         fly.operation("Third Call");
     }
 
-
+    /**
+     * 复合享元模式
+     */
     private void compositeFlyweight(){
         List<Character> compositeState = new ArrayList<Character>();
-        compositeState.add('a');
-        compositeState.add('b');
         compositeState.add('c');
-        compositeState.add('a');
-        compositeState.add('b');
+        compositeState.add('d');
+        compositeState.add('e');
+        compositeState.add('c');
+        compositeState.add('d');
 
         FlyweightFactory flyFactory = new FlyweightFactory();
         Flyweight compositeFly1 = flyFactory.factory(compositeState);
