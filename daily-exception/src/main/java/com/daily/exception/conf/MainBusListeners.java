@@ -7,7 +7,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 /**
  * 监听上下文
  */
-public class MainBusiListeners implements ApplicationListener<ContextRefreshedEvent> {
+public class MainBusListeners implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         SpringContextUtil.setApplicationContextByMain(event.getApplicationContext());

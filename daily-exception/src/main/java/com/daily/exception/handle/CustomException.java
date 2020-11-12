@@ -17,7 +17,7 @@ public class CustomException extends RuntimeException {
     private String message;
 
     /**
-     * 错误信息
+     * 数据
      */
     private Object data;
 

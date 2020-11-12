@@ -14,7 +14,7 @@ public class CustomExcImportBeanDefinition implements ImportBeanDefinitionRegist
      * @param annotationMetadata     当前类的注解信息
      * @param beanDefinitionRegistry BeanDefinition注册类
      *                               把所有需要添加到容器中的bean；
-     *                               调用BeanDefinitionRegistry.registerBeanDefinition手工注册进来
+     *                               调用BeanDefinitionRegistry.registerBeanDefinition手动注册进来
      */
     @Override
     public void registerBeanDefinitions(AnnotationMetadata annotationMetadata, BeanDefinitionRegistry beanDefinitionRegistry) {
