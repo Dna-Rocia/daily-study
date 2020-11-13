@@ -33,7 +33,7 @@ public class PropertiesFileUtil {
         try {
             readApplicationProperties();
         } catch (IOException e) {
-            throw new CustomException(CustomExceptionConst.ERROR_604);
+            throw new CustomException(CustomExceptionConst.ERROR_104);
         }
     }
 
@@ -43,10 +43,10 @@ public class PropertiesFileUtil {
         try {
             this.resourceBundle = ResourceBundle.getBundle(excFilename);
         } catch (MissingResourceException mre) {
-            String msg = CustomExceptionConst.ERROR_605.message;
+            String msg = CustomExceptionConst.ERROR_105.message;
             msg = MessageFormat.format(msg, excFilename);
-            CustomExceptionConst.ERROR_605.setMessage(msg);
-            throw new CustomException(CustomExceptionConst.ERROR_605);
+            CustomExceptionConst.ERROR_105.setMessage(msg);
+            throw new CustomException(CustomExceptionConst.ERROR_105);
         }
     }
 
@@ -60,15 +60,15 @@ public class PropertiesFileUtil {
         Properties properties = new Properties();
         InputStream inputStream = null;
         String contextPath = SpringContextUtil.getApplicationConfigurationPath();
-        if (contextPath.equals("")){
-            throw new CustomException(CustomExceptionConst.ERROR_606);
+        if (contextPath.equals("") || contextPath == null){
+            throw new CustomException(CustomExceptionConst.ERROR_106);
         }
         inputStream = Object.class.getResourceAsStream(contextPath);
         try {
             properties.load(inputStream);
             excFilename = properties.get("custom.filename").toString().trim();
         } catch (IOException e) {
-            throw new CustomException(CustomExceptionConst.ERROR_604);
+            throw new CustomException(CustomExceptionConst.ERROR_104);
         } finally {
             inputStream.close();
         }
@@ -94,7 +94,7 @@ public class PropertiesFileUtil {
     public String get(String key, String charsetName) {
         try {
             String val = resourceBundle.getString(key).trim();
-            if (val.length() == 0) throw new CustomException(CustomExceptionConst.ERROR_600);
+            if (val.length() == 0) throw new CustomException(CustomExceptionConst.ERROR_102);
             if (charsetName != null && charsetName != "") {
                 return resetEncoding(val, charsetName);
             }
@@ -146,23 +146,23 @@ public class PropertiesFileUtil {
         inputStream = Object.class.getResourceAsStream(path);
 
         if (inputStream == null) {
-            String msg = CustomExceptionConst.ERROR_605.message;
+            String msg = CustomExceptionConst.ERROR_105.message;
             msg = MessageFormat.format(msg, excFilename);
-            CustomExceptionConst.ERROR_605.setMessage(msg);
-            throw new CustomException(CustomExceptionConst.ERROR_605);
+            CustomExceptionConst.ERROR_105.setMessage(msg);
+            throw new CustomException(CustomExceptionConst.ERROR_105);
         }
 
         try {
             properties.load(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
             Object obj = properties.get(key);
-            if (obj == null) throw new CustomException(CustomExceptionConst.ERROR_600);
+            if (obj == null) throw new CustomException(CustomExceptionConst.ERROR_102);
             String val = obj.toString().trim();
             if (charsetName != null && charsetName != "") {
                 return resetEncoding(val, charsetName);
             }
             return val;
         } catch (IOException e) {
-            throw new CustomException(CustomExceptionConst.ERROR_604);
+            throw new CustomException(CustomExceptionConst.ERROR_104);
         } finally {
             inputStream.close();
         }

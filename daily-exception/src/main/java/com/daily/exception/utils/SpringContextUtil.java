@@ -2,12 +2,14 @@ package com.daily.exception.utils;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SpringContextUtil {
+@Lazy(false)
+public class SpringContextUtil{
 
     private static ApplicationContext applicationContext;
 
@@ -18,6 +20,9 @@ public class SpringContextUtil {
     }
 
     public static String getApplicationConfigurationPath() {
+        if (applicationContext == null){
+            return null;
+        }
         MutablePropertySources mutablePropertySources = ((ConfigurableApplicationContext) applicationContext).getEnvironment().getPropertySources();
         String path = "";
         for (PropertySource source : mutablePropertySources) {

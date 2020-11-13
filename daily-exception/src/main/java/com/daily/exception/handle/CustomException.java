@@ -143,7 +143,12 @@ public class CustomException extends RuntimeException {
         this.message = valArr[1];
     }
 
-
+    /**
+     * get错误码，以及错误信息
+     * @param key  关联配置文件自定义异常的Key键
+     * @param charsetName  字符编码
+     * @return 读取到的value
+     */
     private String[] getValByKey(String key, String charsetName) {
         PropertiesFileUtil pfu = null;
         pfu = PropertiesFileUtil.getInstance();
@@ -151,10 +156,9 @@ public class CustomException extends RuntimeException {
 //        if (value.length() == 0)throw new CustomException(CustomExceptionConst.ERROR_600);
         String[] valArr = value.split("\\:");
         if (valArr.length != 2) {
-            throw new CustomException(CustomExceptionConst.ERROR_303);
+            throw new CustomException(CustomExceptionConst.ERROR_101);
         }
         return valArr;
-
     }
 
     /**
@@ -168,11 +172,11 @@ public class CustomException extends RuntimeException {
         try {
             value = PropertiesFileUtil.readPropertiesFile(key, charsetName);
         } catch (IOException io) {
-            throw new CustomException(CustomExceptionConst.ERROR_604);
+            throw new CustomException(CustomExceptionConst.ERROR_104);
         }
         String[] valArr = value.split("\\:");
         if (valArr.length != 2) {
-            throw new CustomException(CustomExceptionConst.ERROR_303);
+            throw new CustomException(CustomExceptionConst.ERROR_101);
         }
         return valArr;
     }

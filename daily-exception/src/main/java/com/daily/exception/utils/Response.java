@@ -1,5 +1,6 @@
 package com.daily.exception.utils;
 
+import com.alibaba.fastjson.JSON;
 import com.daily.exception.constant.CustomExceptionConst;
 import com.daily.exception.handle.CustomException;
 
@@ -41,11 +42,11 @@ public class Response<T> implements Serializable {
         return new Response<T>(CustomExceptionConst.ERROR_0.code, msg, null);
     }
 
-    public static <T> Response<T> buildFailResponse(CustomException e) {
-        return new Response<T>(e.getCode(), e.getMessage(), (T) e.getData());
+    public static <T> Response<T> buildFailResponse(CustomExceptionConst e) {
+        return new Response<T>(e.getCode(), e.getMessage());
     }
 
-    public static <T> Response<T> buildFailResponse(CustomExceptionConst e) {
+    public static <T> Response<T> buildFailResponse(CustomException e) {
         return new Response<T>(e.getCode(), e.getMessage());
     }
 
@@ -83,10 +84,6 @@ public class Response<T> implements Serializable {
 
     @Override
     public String toString() {
-        return "Response{" +
-                "code=" + code +
-                ", message='" + message + '\'' +
-                ", data=" + data +
-                '}';
+        return JSON.toJSONString(this);
     }
 }
