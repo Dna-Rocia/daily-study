@@ -168,7 +168,7 @@ public class CustomException extends RuntimeException {
         try {
             value = PropertiesFileUtil.readPropertiesFile(key, charsetName);
         } catch (IOException io) {
-            throw new CustomException(CustomExceptionConst.ERROR_IO);
+            throw new CustomException(CustomExceptionConst.ERROR_604);
         }
         String[] valArr = value.split("\\:");
         if (valArr.length != 2) {

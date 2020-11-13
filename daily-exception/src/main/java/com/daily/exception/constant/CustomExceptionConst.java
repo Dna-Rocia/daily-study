@@ -8,9 +8,9 @@ public enum CustomExceptionConst {
     ERROR_303(303, "自定义异常格式不规范，请按照规范格式< key=errorCode:errorMessage >处理"),
     ERROR_600(600, "异常信息无法获取或未定义"),
     ERROR_603(603, "properties信息读取乱码，字符编码转换异常"),
-    ERROR_IO(604, "读取配置文件，IO异常"),
-    ERROR_605(605, "{0}资源文件读取失败或未定义"),
-
+    ERROR_604(604, "读取配置文件，IO异常"),
+    ERROR_605(605, "Please add the profile about custom exception configuration."),
+    ERROR_606(606, "程序启动类上未初始化异常监听器类"),
     /**
      * 以下是全局异常时所需
      */

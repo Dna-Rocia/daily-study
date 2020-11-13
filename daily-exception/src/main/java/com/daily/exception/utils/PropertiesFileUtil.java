@@ -1,7 +1,5 @@
 package com.daily.exception.utils;
 
-
-
 import com.daily.exception.constant.CustomExceptionConst;
 import com.daily.exception.handle.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.*;
 
@@ -34,7 +33,7 @@ public class PropertiesFileUtil {
         try {
             readApplicationProperties();
         } catch (IOException e) {
-            throw new CustomException(CustomExceptionConst.ERROR_IO);
+            throw new CustomException(CustomExceptionConst.ERROR_604);
         }
     }
 
@@ -51,9 +50,6 @@ public class PropertiesFileUtil {
         }
     }
 
-//    public static synchronized PropertiesFileUtil getInstance() {
-//        return getInstance(NAME);
-//    }
 
     /**
      * 读取 application文件
@@ -63,12 +59,16 @@ public class PropertiesFileUtil {
     private static void readApplicationProperties() throws IOException {
         Properties properties = new Properties();
         InputStream inputStream = null;
-        inputStream = Object.class.getResourceAsStream(SpringContextUtil.getApplicationConfigurationPath());
+        String contextPath = SpringContextUtil.getApplicationConfigurationPath();
+        if (contextPath.equals("")){
+            throw new CustomException(CustomExceptionConst.ERROR_606);
+        }
+        inputStream = Object.class.getResourceAsStream(contextPath);
         try {
             properties.load(inputStream);
             excFilename = properties.get("custom.filename").toString().trim();
         } catch (IOException e) {
-            throw new CustomException(CustomExceptionConst.ERROR_IO);
+            throw new CustomException(CustomExceptionConst.ERROR_604);
         } finally {
             inputStream.close();
         }
@@ -138,6 +138,9 @@ public class PropertiesFileUtil {
      */
     public static String readPropertiesFile(String key, String charsetName) throws IOException {
         Properties properties = new Properties();
+        if (excFilename == null && excFilename.equals("")) {
+           readApplicationProperties();
+        }
         String path = "/" + excFilename + ".properties";
         InputStream inputStream = null;
         inputStream = Object.class.getResourceAsStream(path);
@@ -150,7 +153,7 @@ public class PropertiesFileUtil {
         }
 
         try {
-            properties.load(inputStream);
+            properties.load(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
             Object obj = properties.get(key);
             if (obj == null) throw new CustomException(CustomExceptionConst.ERROR_600);
             String val = obj.toString().trim();
@@ -159,7 +162,7 @@ public class PropertiesFileUtil {
             }
             return val;
         } catch (IOException e) {
-            throw new CustomException(CustomExceptionConst.ERROR_IO);
+            throw new CustomException(CustomExceptionConst.ERROR_604);
         } finally {
             inputStream.close();
         }
