@@ -27,7 +27,8 @@
         <module>daily-rocketmq</module>
         <module>daily-shiro</module>
         <module>daily-web</module>
-
+        <module>daily-export</module>
+        <module>daily-pattern</module>
     </modules>
 
 
