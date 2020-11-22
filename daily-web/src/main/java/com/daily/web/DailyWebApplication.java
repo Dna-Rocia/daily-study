@@ -1,5 +1,6 @@
 package com.daily.web;
 
+import com.daily.exception.conf.InitExceptionListener;
 import com.daily.exception.handle.CustomException;
 import com.daily.exception.utils.Response;
 import org.mybatis.spring.annotation.MapperScan;
@@ -28,10 +29,10 @@ public class DailyWebApplication {
 
 
     public static void main(String[] args) {
-        SpringApplication.run(DailyWebApplication.class, args);
-//        SpringApplication springApplication =new SpringApplication(DailyWebApplication.class);
-//        springApplication.addListeners(new MainBusiListeners());
-//        springApplication.run(args);
+//        SpringApplication.run(DailyWebApplication.class, args);
+        SpringApplication springApplication =new SpringApplication(DailyWebApplication.class);
+        springApplication.addListeners(new InitExceptionListener());
+        springApplication.run(args);
     }
 
     private void test(String pick){

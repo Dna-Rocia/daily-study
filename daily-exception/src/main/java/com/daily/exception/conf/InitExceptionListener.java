@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * 监听上下文
  */
 @Component
-public class MainBusListeners implements ApplicationListener<ContextRefreshedEvent> {
+public class InitExceptionListener implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
