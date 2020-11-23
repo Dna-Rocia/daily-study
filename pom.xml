@@ -29,6 +29,7 @@
         <module>daily-web</module>
         <module>daily-export</module>
         <module>daily-pattern</module>
+        <module>daily-seata</module>
     </modules>
 
 
