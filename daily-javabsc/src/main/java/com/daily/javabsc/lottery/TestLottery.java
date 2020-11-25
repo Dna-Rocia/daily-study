@@ -8,27 +8,19 @@ import java.util.Map;
 public class TestLottery {
 
 
-    static final int TIME = 100000;
+    static final int TIME = 1000000;
 
-    public static void iteratorMap(Map<Integer, Integer> map, List<Double> list){
-        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
-            int index = entry.getKey();
-            int time  = entry.getValue();
-            LotteryResult result = new LotteryResult(index, TIME, time, list.get(index));
-            System.out.println(result);
-        }
-    }
 
     public static void main(String[] args) {
         TestLottery t = new TestLottery();
         try {
-            t.lotteryTest04();
+            t.lotteryTest02();
         }catch (Exception e){
             e.printStackTrace();
         }
 
-
     }
+
 
     public void lotteryTest04() throws Exception {
         List<Award> awardList = new ArrayList<Award>();
@@ -41,7 +33,7 @@ public class TestLottery {
 
         Map<String,Integer> result = new HashMap<String,Integer>();
         for(int i=0;i<10000;i++){
-            Award award = LotteryUtil.lottery2(awardList);
+            Award award = Lottery01Util.lottery2(awardList);
             String title = award.getAwardTitle();
             Integer count = result.get(title);
             result.put(title, count == null ? 1 : count + 1);
@@ -56,28 +48,38 @@ public class TestLottery {
     public void lotteryTest03(){
         //构造概率集合
         List<Double> list = new ArrayList<Double>();
-        list.add(5d);
         list.add(20d);
         list.add(30d);
-        list.add(45d);
-        int a = LotteryUtil.lottery(list);
-        System.out.println("a:"+a);
+        list.add(50d);
+        int a=0,b=0,c=0;
+        for (int i = 0; i < 100 ; i++) {
+            int tmp = Lottery01Util.lottery(list);
+            if (tmp == 0){
+                a++;
+            }else if ( tmp == 1){
+                b++;
+            }else if (tmp == 2){
+                c++;
+            }
+        }
+        System.out.println("一等奖（20%）:"+a+" 次，二等奖（30%）:"+b+" 次，三等奖（50%）:"+c+" 次");
     }
 
-
+    /**
+     * 更细致
+     */
     public void lotteryTest02(){
         //构造概率集合
         List<Double> list = new ArrayList<Double>();
-        list.add(5d);
         list.add(20d);
         list.add(30d);
-        list.add(45d);
-        LotteryUtil ll = new LotteryUtil(list);
+        list.add(50d);
+        Lottery01Util ll = new Lottery01Util(list);
         double sumProbability = ll.getMaxElement();
 
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         for(int i = 0; i < TIME; i++){
-            int index = ll.randomColunmIndex();
+            int index = ll.lottery();
             if(map.containsKey(index)){
                 map.put(index, map.get(index) + 1);
             }else{
@@ -89,6 +91,16 @@ public class TestLottery {
             list.set(i, probability);
         }
         iteratorMap(map, list);
+    }
+
+
+    public static void iteratorMap(Map<Integer, Integer> map, List<Double> list){
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+            int index = entry.getKey();
+            int time  = entry.getValue();
+            LotteryResult result = new LotteryResult(index, TIME, time, list.get(index));
+            System.out.println(result);
+        }
     }
 
 
