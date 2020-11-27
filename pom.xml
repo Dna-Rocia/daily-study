@@ -24,6 +24,7 @@
         <module>daily-exception</module>
         <module>daily-export</module>
         <module>daily-javabsc</module>
+        <module>daily-log</module>
         <module>daily-pay</module>
         <module>daily-pattern</module>
         <module>daily-redis</module>
@@ -230,6 +231,7 @@
             <artifactId>poi-ooxml</artifactId>
             <version>3.9</version>
         </dependency>
+
 <!--        csv -->
         <dependency>
             <groupId>com.opencsv</groupId>
@@ -242,6 +244,7 @@
             <version>1.8</version>
         </dependency>
 
+<!--        log-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -252,6 +255,12 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.30</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjtools</artifactId>
+        </dependency>
+
 
     </dependencies>
 
