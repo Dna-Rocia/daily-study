@@ -22,14 +22,16 @@
     <modules>
         <module>daily-common</module>
         <module>daily-exception</module>
+        <module>daily-export</module>
         <module>daily-javabsc</module>
+        <module>daily-pay</module>
+        <module>daily-pattern</module>
         <module>daily-redis</module>
         <module>daily-rocketmq</module>
         <module>daily-shiro</module>
-        <module>daily-web</module>
-        <module>daily-export</module>
-        <module>daily-pattern</module>
         <module>daily-seata</module>
+        <module>daily-web</module>
+
     </modules>
 
 
