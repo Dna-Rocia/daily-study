@@ -1,6 +1,6 @@
-package com.daily.jedis;
+package com.daily.jedis.conf;
 
-import com.daily.redis.conf.RedisConf;
+import com.daily.jedis.property.RedisProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,23 +12,32 @@ import org.apache.commons.lang.StringUtils;
 
 
 /**
- * @Description
+ * @Description  操作 redis 库方式一
+ *  jedis 是redis 面向java 的一个客户端
  * @Author ROCIA
  * @Date 2020/8/17
  */
 @Component
-public class JedisTool {
+public class JedisConfig {
+    //logger
+    private static final Logger LOGGER = LoggerFactory.getLogger(JedisConfig.class);
 
+    /**
+     * 将连接的 redis 库的具体连接配置信息
+     */
     @Autowired
-    private RedisConf redisConf;
+    private RedisProperties redisProperties;
 
 //	protected static ReentrantLock lockPool = new ReentrantLock();
 //	protected static ReentrantLock lockJedis = new ReentrantLock();
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(JedisTool.class);
-
+    /**
+     * jedis 连接池
+     */
     private JedisPool jedisPool = null;
-
+    /**
+     * 在borrow一个jedis实例时，是否提前进行validate操作；如果为true，则得到的jedis实例均是可用的；
+     */
     private boolean testOnBorrow = false;
 
     /**
@@ -42,17 +51,22 @@ public class JedisTool {
     public final int EXRP_MONTH = 60 * 60 * 24 * 30;
 
     /**
+     * 不设置过期时长
+     */
+    public static final long NOT_EXPIRE = -1;
+
+    /**
      * 初始化Redis连接池
      */
     public void initialPool() {
         try {
             JedisPoolConfig config = new JedisPoolConfig();
-            config.setMaxTotal(this.redisConf.getMax_active());
-            config.setMaxIdle(this.redisConf.getMax_idle());
-            config.setMaxWaitMillis(this.redisConf.getMax_wait());
+            config.setMaxTotal(this.redisProperties.getMax_active());
+            config.setMaxIdle(this.redisProperties.getMax_idle());
+            config.setMaxWaitMillis(this.redisProperties.getMax_wait());
             // 在borrow一个jedis实例时，是否提前进行validate操作；如果为true，则得到的jedis实例均是可用的；
             config.setTestOnBorrow(this.testOnBorrow);
-            this.jedisPool = new JedisPool(config, this.redisConf.getIp(), this.redisConf.getPort(), this.redisConf.getTimeout());
+            this.jedisPool = new JedisPool(config, this.redisProperties.getIp(), this.redisProperties.getPort(), this.redisProperties.getTimeout());
         } catch (Exception e) {
             LOGGER.error("First create JedisPool error : " + e);
         }
@@ -80,7 +94,7 @@ public class JedisTool {
             if (null != this.jedisPool) {
                 jedis = this.jedisPool.getResource();
                 try {
-                    String reply = jedis.auth(this.redisConf.getPassword());
+                    String reply = jedis.auth(this.redisProperties.getPassword());
                     LOGGER.info("jedis auth reply : " + reply);
 
                 } catch (Exception e) {

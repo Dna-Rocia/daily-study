@@ -1,6 +1,7 @@
-package com.daily.redis.conf;
+package com.daily.jedis.property;
 
 import com.daily.common.utils.AESUtil;
+import com.daily.common.utils.EmptyUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "redis")
 @PropertySource(value = "classpath:/pro/redis.properties")
-public class RedisConf {
+public class RedisProperties {
 
     // Redis服务器IP
     @Value("${redis.ip}")
@@ -67,7 +68,11 @@ public class RedisConf {
     }
 
     public void setPassword(String password) {
-        this.password = AESUtil.aesDecode(password);
+        if (EmptyUtil.isNotEmpty(password)){
+            password = AESUtil.aesDecode(password);
+            System.out.println("redis 密码："+ password);
+        }
+        this.password = password;
     }
 
     public Integer getMax_active() {
