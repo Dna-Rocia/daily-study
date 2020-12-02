@@ -149,4 +149,47 @@ public class TestLottery {
 //            // 抽奖记录
 //            activityRecordDao.doInsert(new ActivityRecord(open_id, Award.WHEEL_AWARD_TYPE, wid, request.getRemoteAddr()));
         }
+
+//       if (!lotteryGroupMap.isEmpty() && lotteryGroupMap.containsKey(ranking)) {
+//        LotteryGroup group = lotteryGroupMap.get(ranking);
+////                  获取当前名次的百分比 * 100
+//        Double curProportion = group.getProportion();
+////                  获取当前名次 上一次按比重set进来的数值
+//        val += group.getNowAssigned();
+////                  获取当前名次 未按比重分配的数值
+//        Double curUnAssigned = group.getUnAssigned();
+//        double nextPart = 0d;
+//        if(curUnAssigned > 0 && curProportion > 0){
+//            double noAss =  curUnAssigned * curProportion;
+//            nextPart = curUnAssigned - noAss;
+//            val+= noAss;
+//        }
+//        boolean lastIndex = (i == (size - 1));
+//        int nextRanking = lastIndex ?ranking : ranking + 1 ;
+//        LotteryGroup nextGroup = getNextRanking(lotteryGroupMap,nextRanking);
+//        //最后一项
+//        if(lastIndex){
+//            double f = (curProportion - val/100);
+//            if (f < 0){
+//                valList.add(val);
+//                hashMap.put(ranking, json);
+//                break;
+//            }
+//            double tab =  nextGroup.getProportion() * f;
+//            nextGroup.setNowAssigned(nextPart+tab);
+////                      计算出大于的部分，放至下一项未分配中
+//            nextGroup.setUnAssigned(0d);
+//            lotteryGroupMap.put(nextRanking,nextGroup);
+//        }
+//        //将本次的分配给下一项，进行set值
+//        if (EmptyUtil.isNotEmpty(nextGroup)) {
+//            nextGroup.setNowAssigned(nextPart);
+////                      计算出大于的部分，放至下一项未分配中
+//            nextGroup.setUnAssigned((curProportion - val/100)*100 < 0? 0:(curProportion - val/100)*100);
+//            lotteryGroupMap.put(nextRanking,nextGroup);
+//        }
+//    }
+
+
+
 }
