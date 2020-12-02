@@ -13,9 +13,14 @@ import java.util.List;
 public class TestController {
 
     public static void main(String[] args) {
-        Gson gson = new Gson();
-        String str = gson.toJson(loadTree());
-        System.out.println(str);
+//        Gson gson = new Gson();
+//        String str = gson.toJson(loadTree());
+//        System.out.println(str);
+        System.out.println( 3*0.1);
+        System.out.println(0.3*3);
+//        System.out.println(1+"a");
+//        int a = 1;
+//        System.out.println(a+"p");
     }
 
 
