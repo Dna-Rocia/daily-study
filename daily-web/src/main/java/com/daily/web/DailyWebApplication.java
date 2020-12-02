@@ -28,11 +28,16 @@ public class DailyWebApplication {
     }
 
 
+// 在项目启动的时候，对异常监听进行初始化 方式一：
+//SpringApplication springApplication =new SpringApplication(DailyWebApplication.class);
+//springApplication.addListeners(new InitExceptionListener());
+//springApplication.run(args);
+
     public static void main(String[] args) {
-//        SpringApplication.run(DailyWebApplication.class, args);
-        SpringApplication springApplication =new SpringApplication(DailyWebApplication.class);
-        springApplication.addListeners(new InitExceptionListener());
-        springApplication.run(args);
+        SpringApplication.run(DailyWebApplication.class, args);
+//        SpringApplication springApplication =new SpringApplication(DailyWebApplication.class);
+//        springApplication.addListeners(new InitExceptionListener());
+//        springApplication.run(args);
     }
 
     private void test(String pick){
