@@ -1,5 +1,8 @@
 package com.daily.thread.model;
 
+/**
+ * 定义一个Thread 类的子类
+ */
 public class ThreadP2 extends Thread{
 
     @Override
