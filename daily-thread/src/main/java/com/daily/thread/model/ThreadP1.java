@@ -10,6 +10,6 @@ public class ThreadP1 extends Thread{
     public void run() {
         //run()方法体就是Thread子类执行的业务
 //        super.run();
-        System.out.println("自定义线程子类线程已启动，MyThread.run()");
+        System.out.println("自定义线程子类线程已启动，ThreadP1.run()");
     }
 }
