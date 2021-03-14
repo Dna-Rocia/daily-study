@@ -1,5 +1,6 @@
 package com.daily.thread.controller;
 
+import com.daily.thread.model.RunnableP1;
 import com.daily.thread.model.ThreadP1;
 import com.daily.thread.model.ThreadP2;
 
@@ -7,14 +8,44 @@ public class TestController {
 
     public static void main(String[] args) {
         TestController test = new TestController();
-//        test.p1Test();
-        test.p2Test();
-
+//        test.threadP1Test();
+//        test.threadP2Test();
+        test.runnableP1Test();
 
     }
 
+    //3.学习runnable接口的实现类，线程的创建、启动
+    private void runnableP1Test(){
+        /*线程1 RunnableP1 */
+//        3)创建Runnable接口的实现类对象
+        RunnableP1 p1 = new RunnableP1();
+//        4)创建线程对象
+        Thread thread = new Thread(p1);
+//        5)启动线程
+        thread.start();
+
+        /* 线程2-main线程*/
+        System.out.println("JVM启动的main线程，TestController.main()");
+        for (int i = 0; i < 10; i++) {
+            System.out.println("main Thread:"+i);
+        }
+
+        /* 线程3 - 内部匿名实现类的线程 */
+//        ps: 有时调用new Thread(Runnable) 构造方法时，实参也会传递匿名内部类对象
+        System.out.println("JVM启动的 anonymous 线程，new Thread(new Runnable() {})");
+        Thread tmpThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 10; i++) {
+                    System.out.println("anonymous inner Thread:"+i);
+                }
+            }
+        });
+        tmpThread.start();
+    }
+
     //2.学习演示运行结果的随机性
-    private void p2Test(){
+    private void threadP2Test(){
         ThreadP2 p2 = new ThreadP2();
         p2.start();
 
@@ -31,15 +62,14 @@ public class TestController {
 
     }
 
-
     //1.学习线程创建、启动
-    private void p1Test(){
+    private void threadP1Test(){
         System.out.println("JVM启动的main线程，TestController.main()");
         //创建线程对象
-        ThreadP1 thread = new ThreadP1();
+        ThreadP1 p1 = new ThreadP1();
 
         //启动线程
-        thread.start();
+        p1.start();
 
         //其后的逻辑代码
         System.out.println("这是 TestController.main() 后边的代码");
