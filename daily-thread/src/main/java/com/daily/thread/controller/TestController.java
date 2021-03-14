@@ -1,14 +1,33 @@
 package com.daily.thread.controller;
 
 import com.daily.thread.model.ThreadP1;
+import com.daily.thread.model.ThreadP2;
 
 public class TestController {
 
     public static void main(String[] args) {
         TestController test = new TestController();
-        test.p1Test();
+//        test.p1Test();
+        test.p2Test();
 
 
+    }
+
+    //2.学习演示运行结果的随机性
+    private void p2Test(){
+        ThreadP2 p2 = new ThreadP2();
+        p2.start();
+
+        System.out.println("JVM启动的main线程，TestController.main()");
+        try {
+            for (int i = 0; i < 10; i++) {
+                System.out.println("main Thread:"+i);
+                int time = (int)(Math.random() * 1000); //Math.random() 产生 0~1 之间的随机数
+                Thread.sleep(time);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 
