@@ -16,7 +16,5 @@ public class MethodThreadP1 extends Thread{
     public void run() {
         System.out.println("自定义线程子类线程已启动，MethodThreadP1.run(),当前线程名称："+Thread.currentThread().getName());
 
-
-
     }
 }
