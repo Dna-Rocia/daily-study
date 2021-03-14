@@ -23,17 +23,24 @@ import java.util.concurrent.Executors;
 public class CsvUtil1 {
 
     //CSV文件分隔符
-    private final static String NEW_LINE_SEPARATOR="\n";
-    /** CSV文件列分隔符 */
+    private final static String NEW_LINE_SEPARATOR = "\n";
+    /**
+     * CSV文件列分隔符
+     */
     private static final String CSV_COLUMN_SEPARATOR = ",";
-    /** CSV文件列分隔符 */
+    /**
+     * CSV文件列分隔符
+     */
     private static final String CSV_RN = "\r\n";
-    /** CSV文件列值的前边附加的符号**/
+    /**
+     * CSV文件列值的前边附加的符号
+     **/
     private static final String CSV_T = "\t";
+
     /**
      * @param colNames 表头部数据
      * @param dataList 集合数据
-     * @param mapKeys 查找的对应数据
+     * @param mapKeys  查找的对应数据
      */
     public static ByteArrayOutputStream doExport(String[] colNames, String[] mapKeys, List<Map> dataList) {
         try {
@@ -75,20 +82,23 @@ public class CsvUtil1 {
             String filename = new String(fileName.getBytes("gbk"), "iso8859-1") + sdf.format(new Date()) + ".csv";
             headers.add("Pragma", "public");
             headers.add("Cache-Control", "max-age=30");
-            headers.add("Content-Disposition", "attachment;filename="+filename);
+            headers.add("Content-Disposition", "attachment;filename=" + filename);
             headers.setContentType(MediaType.valueOf("application/vnd.ms-excel;charset=UTF-8"));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return headers;
     }
 
 
-    /**写入csv文件
-     * @param headers 列头
-     * @param data 数据内容
+    /**
+     * 写入csv文件
+     *
+     * @param headers  列头
+     * @param data     数据内容
      * @param filePath 创建的csv文件路径
-     * @throws IOException **/
+     * @throws IOException
+     **/
     public static void writeCsvWithHeader(String[] headers, List<Object[]> data, String filePath) {
         //初始化csvformat
         CSVFormat format = CSVFormat.DEFAULT.withHeader(headers);
@@ -99,9 +109,9 @@ public class CsvUtil1 {
             //创建CSVPrinter对象
             CSVPrinter printer = new CSVPrinter(osw, format);
 
-            if(null!=data){
+            if (null != data) {
                 //循环写入数据
-                for(Object[] lineData:data){
+                for (Object[] lineData : data) {
                     printer.printRecord(lineData);
                 }
             }
@@ -112,12 +122,15 @@ public class CsvUtil1 {
         }
     }
 
-    /**写入csv文件
-     * @param headers 列头
-     * @param data 数据内容
+    /**
+     * 写入csv文件
+     *
+     * @param headers  列头
+     * @param data     数据内容
      * @param filePath 创建的csv文件路径
-     * @throws IOException **/
-    public static void writeCsvWithRecordSeparator(Object[] headers, List<Object[]> data, String filePath){
+     * @throws IOException
+     **/
+    public static void writeCsvWithRecordSeparator(Object[] headers, List<Object[]> data, String filePath) {
         //初始化csvformat
         CSVFormat format = CSVFormat.DEFAULT.withRecordSeparator(NEW_LINE_SEPARATOR);
         try {
@@ -125,19 +138,19 @@ public class CsvUtil1 {
             FileOutputStream fos = new FileOutputStream(filePath);
             OutputStreamWriter osw = new OutputStreamWriter(fos, "GBK");
             //创建CSVPrinter对象
-            CSVPrinter printer = new CSVPrinter(osw,format);
+            CSVPrinter printer = new CSVPrinter(osw, format);
             //写入列头数据
             printer.printRecord(headers);
 
-            if(null!=data){
+            if (null != data) {
                 //循环写入数据
-                for(Object[] lineData:data){
+                for (Object[] lineData : data) {
                     printer.printRecord(lineData);
                 }
             }
             printer.flush();
             printer.close();
-            System.out.println("CSV文件创建成功,文件路径:"+filePath);
+            System.out.println("CSV文件创建成功,文件路径:" + filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -146,30 +159,31 @@ public class CsvUtil1 {
     /**
      * @filePath 文件路径
      */
-    public static List<CSVRecord> readCsvParse(String filePath){
+    public static List<CSVRecord> readCsvParse(String filePath) {
         List<CSVRecord> records = new ArrayList<>();
         try {
             FileInputStream in = new FileInputStream(filePath);
-            BufferedReader reader = new BufferedReader (new InputStreamReader(in,"GBK"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in, "GBK"));
             CSVParser parser = CSVFormat.EXCEL.parse(reader);
             records = parser.getRecords();
             parser.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             return records;
         }
     }
 
     /**
      * 自定义字段
+     *
      * @filePath 文件路径
      */
-    public static List<CSVRecord> readCsvParseWithHeader(String filePath,String[] headers){
+    public static List<CSVRecord> readCsvParseWithHeader(String filePath, String[] headers) {
         List<CSVRecord> records = new ArrayList<>();
         try {
             FileInputStream in = new FileInputStream(filePath);
-            BufferedReader reader = new BufferedReader (new InputStreamReader(in,"GBK"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in, "GBK"));
             CSVParser parser = CSVFormat.EXCEL.withHeader(headers).parse(reader);
             records = parser.getRecords();
             /*for (CSVRecord record : parser.getRecords()) {
@@ -178,16 +192,16 @@ public class CsvUtil1 {
                         + record.get("code"));
             }*/
             parser.close();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             return records;
         }
     }
 
     /**
      * 导出至多个csv文件
-     * */
+     */
     public void writeMuti() throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(3);
         CountDownLatch doneSignal = new CountDownLatch(2);

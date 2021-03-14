@@ -19,7 +19,6 @@ import java.security.SecureRandom;
 public class AESUtil {
 
 
-
     private static final String ENCODE_RULES = "juzishu";
 
     /**
@@ -143,7 +142,6 @@ public class AESUtil {
 //            System.out.println(decryptString);
 //        }
 //    }
-
 
 
 }

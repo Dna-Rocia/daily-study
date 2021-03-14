@@ -60,7 +60,7 @@ public class PropertiesFileUtil {
         Properties properties = new Properties();
         InputStream inputStream = null;
         String contextPath = SpringContextUtil.getApplicationConfigurationPath();
-        if (contextPath.equals("") || contextPath == null){
+        if (contextPath.equals("") || contextPath == null) {
             throw new CustomException(CustomExceptionConst.ERROR_106);
         }
         inputStream = Object.class.getResourceAsStream(contextPath);
@@ -139,7 +139,7 @@ public class PropertiesFileUtil {
     public static String readPropertiesFile(String key, String charsetName) throws IOException {
         Properties properties = new Properties();
         if (excFilename == null && excFilename.equals("")) {
-           readApplicationProperties();
+            readApplicationProperties();
         }
         String path = "/" + excFilename + ".properties";
         InputStream inputStream = null;

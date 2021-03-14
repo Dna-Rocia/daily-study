@@ -6,7 +6,6 @@
     <description>学习 log的demo</description>
 
 
-
     <groupId>com.daily.log</groupId>
     <artifactId>daily-log</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -16,7 +15,6 @@
         <groupId>com.daily</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
 
 
 </project>

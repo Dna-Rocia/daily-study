@@ -23,50 +23,47 @@ public class AliRmqConfig {
     private String secretKey;
 
     /*设置 TCP 接入域名 */
-    private String NAMESRV_ADDR ;
+    private String NAMESRV_ADDR;
 
 //    endregion
-
 
 
 //    region  控制台创建的 Group ID，用于对消费者或生产者实例进行分类
 
     /*TCP协议 */
-    private  String groupID_TCP_protocol ;
+    private String groupID_TCP_protocol;
 
     /*Http协议 */
-    private  String groupID_HTTP_protocol ;
+    private String groupID_HTTP_protocol;
 
 //    endregion
-
 
 
 //    region  消息主题，一级消息类型，通过 Topic 对消息进行分类
 
     /*普通消息*/
-    private String topic_general ;
+    private String topic_general;
 
     /*事务消息*/
-    private String topic_transaction ;
+    private String topic_transaction;
 
     /*全局顺序消息*/
-    private  String topic_global ;
+    private String topic_global;
 
     /*局部顺序消息*/
-    private  String topic_partition ;
+    private String topic_partition;
 
     /*定时/延时消息*/
-    private String topic_timing ;
+    private String topic_timing;
 
 
 //    endregion
 
 
-
 //    region  交互时效设置
 
     /*设置发送超时时间，单位毫秒 */
-    private Long sendMsgTimeoutMillis ;
+    private Long sendMsgTimeoutMillis;
 
     private String ONSAddr; //在producer上会被nameSERV_addr 覆盖；在orderProducer未使用到； 在transactionProducer上未被覆盖
 
@@ -101,7 +98,7 @@ public class AliRmqConfig {
     private String AUTO_COMMIT;
 
 
-    private String  MessageModel;
+    private String MessageModel;
 
 
 //    endregion
@@ -291,7 +288,6 @@ public class AliRmqConfig {
                 ", AUTO_COMMIT='" + AUTO_COMMIT + '\'' +
                 '}';
     }
-
 
 
 }

@@ -145,8 +145,9 @@ public class CustomException extends RuntimeException {
 
     /**
      * get错误码，以及错误信息
-     * @param key  关联配置文件自定义异常的Key键
-     * @param charsetName  字符编码
+     *
+     * @param key         关联配置文件自定义异常的Key键
+     * @param charsetName 字符编码
      * @return 读取到的value
      */
     private String[] getValByKey(String key, String charsetName) {

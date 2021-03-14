@@ -3,19 +3,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.daily.exception</groupId>
-    <artifactId>daily-exception</artifactId>
+    <groupId>com.daily.thread</groupId>
+    <artifactId>daily-thread</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-
-
-    <name>daily-exception</name>
-    <description>自定义异常</description>
+    <name>daily-thread</name>
+    <description>线程学习部分的例子</description>
 
     <parent>
         <artifactId>daily-parent</artifactId>
         <groupId>com.daily</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
 
     <dependencies>
         <dependency>
@@ -24,11 +23,16 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.daily.exception</groupId>
+            <artifactId>daily-exception</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+
     </dependencies>
 
-
     <build>
-
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -38,23 +42,6 @@
                 </configuration>
             </plugin>
         </plugins>
-
-
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.yml</include>
-                    <include>**/*.properties</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
     </build>
-
 
 </project>

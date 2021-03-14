@@ -5,7 +5,7 @@ package com.daily.pattern.decorator.shape;
  * @Author ROCIA
  * @Date 2020/11/2
  */
-public class Rectangle implements Shape{
+public class Rectangle implements Shape {
 
     @Override
     public void draw() {

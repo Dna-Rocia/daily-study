@@ -13,24 +13,24 @@ import java.util.Random;
  * 2.生成连续集合，       【生成的连续集合为{(0.0, 10.0],(10.0, 30.0],(30.0, 60.0]}】
  * 3.生成随机数，          【生成方法为 random.nextDouble() * maxElement】
  * 4.判断随机数在哪个区间内，返回该区间的index【生成了随机数12.001，则它属于(10.0, 30.0]，返回 index = 1】
- *
  */
 public class Lottery01Util {
     private List<ContinuousList> lotteryList;   //概率连续集合
-    private double maxElement; 					//这里只需要最大值，最小值默认为0.0
+    private double maxElement;                    //这里只需要最大值，最小值默认为0.0
 
     /**
      * 构造抽奖集合
+     *
      * @param list 为奖品的概率
      */
-    public Lottery01Util(List<Double> list){
+    public Lottery01Util(List<Double> list) {
         lotteryList = new ArrayList<ContinuousList>();
-        if(list.size() == 0){
+        if (list.size() == 0) {
             throw new IllegalArgumentException("抽奖集合不能为空！");
         }
         double minElement = 0d;
         ContinuousList continuousList = null;
-        for(Double d : list){
+        for (Double d : list) {
             minElement = maxElement;
             maxElement = maxElement + d;
             continuousList = new ContinuousList(minElement, maxElement);
@@ -42,22 +42,22 @@ public class Lottery01Util {
      * 进行抽奖操作
      * 返回：奖品的概率list集合中的下标
      */
-    public int lottery(){
+    public int lottery() {
         int index = -1;
         Random r = new Random();
         double d = r.nextDouble() * maxElement;  //生成0-1间的随机数
-        if(d == 0d){
+        if (d == 0d) {
             d = r.nextDouble() * maxElement;     //防止生成0.0
         }
         int size = lotteryList.size();
-        for(int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             ContinuousList cl = lotteryList.get(i);
-            if(cl.isContainKey(d)){
+            if (cl.isContainKey(d)) {
                 index = i;
                 break;
             }
         }
-        if(index == -1){
+        if (index == -1) {
             throw new IllegalArgumentException("概率集合设置不合理！");
         }
         return index;
@@ -71,16 +71,16 @@ public class Lottery01Util {
     public List<ContinuousList> getLotteryList() {
         return lotteryList;
     }
+
     public void setLotteryList(List<ContinuousList> lotteryList) {
         this.lotteryList = lotteryList;
     }
 
 
-
     //==================================
+
     /**
-     *
-     * @param orignalRates  传人每一个奖品概率的集合,(集合的第一个参数是0.0 表示百分比中奖)
+     * @param orignalRates 传人每一个奖品概率的集合,(集合的第一个参数是0.0 表示百分比中奖)
      * @return
      */
     public static int lottery(List<Double> orignalRates) {
@@ -99,7 +99,7 @@ public class Lottery01Util {
         /*遍历奖品概率的集合，计算每一个奖品的中间区间*/
         for (double rate : orignalRates) {
             tempSumRate += rate;
-            sortOrignalRates.add(tempSumRate/sumRate);
+            sortOrignalRates.add(tempSumRate / sumRate);
         }
         // 根据区块值来获取抽取到的物品索引
         Random random = new Random();
@@ -110,15 +110,16 @@ public class Lottery01Util {
     }
 
 
-
     //=======================================================
+
     /**
      * 抽奖，获取中奖奖品
+     *
      * @param awardList 奖品及中奖概率列表
      * @return 中奖商品
      */
-    public static Award lottery2(List<Award> awardList) throws Exception{
-        if(awardList.isEmpty()){
+    public static Award lottery2(List<Award> awardList) throws Exception {
+        if (awardList.isEmpty()) {
             throw new Exception("奖品列表不能为空");
         }
         //奖品总数
@@ -153,10 +154,10 @@ public class Lottery01Util {
     //======================================================================
 
 
-        /**
-           * 生成奖项
-           * @return
-           */
+    /**
+     * 生成奖项
+     * @return
+     */
 //                 public static WchatLotteryDomain generateAward() {
 //                 List<WchatLotteryDomain> initData = initDrawList;
 //                 long result = randomnum(1, 100);
@@ -178,7 +179,6 @@ public class Lottery01Util {
 //                     }
 //                 return returnobj;
 //             }
-
 
 
 }

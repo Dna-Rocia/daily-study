@@ -15,10 +15,10 @@ public class Client {
         System.out.print("没有包装的圆，");
         circle.draw();
 
-        System.out.print("\n"+"包装后的红色圆，");
+        System.out.print("\n" + "包装后的红色圆，");
         redCircle.draw();
 
-        System.out.print("\n"+"包装后的矩形：");
+        System.out.print("\n" + "包装后的矩形：");
         redRectangle.draw();
     }
 

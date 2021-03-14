@@ -22,19 +22,19 @@ public class ReadConfigController {
     private String port;
 
     @GetMapping("/env")
-    public String readByEnvironment(){
+    public String readByEnvironment() {
         return this.env.getProperty("server.port");
     }
 
 
     @GetMapping("/val")
-    public String readByValue(){
+    public String readByValue() {
         return port;
     }
 
 
     @RequestMapping("/conf")
-    public String readMyConfig(){
+    public String readMyConfig() {
         return this.myConfig.toString();
     }
 

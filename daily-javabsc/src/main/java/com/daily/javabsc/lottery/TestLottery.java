@@ -15,7 +15,7 @@ public class TestLottery {
         TestLottery t = new TestLottery();
         try {
             t.lotteryTest02();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -24,15 +24,15 @@ public class TestLottery {
 
     public void lotteryTest04() throws Exception {
         List<Award> awardList = new ArrayList<Award>();
-        awardList.add(new Award("10个积分",0.35d));
-        awardList.add(new Award("33个积分",0.25d));
-        awardList.add(new Award("5元红包",0.002d));
-        awardList.add(new Award("20元话费",0.003d));
-        awardList.add(new Award("京东100元购物卡",0.0005d));
-        awardList.add(new Award("未中奖",0.1d));
+        awardList.add(new Award("10个积分", 0.35d));
+        awardList.add(new Award("33个积分", 0.25d));
+        awardList.add(new Award("5元红包", 0.002d));
+        awardList.add(new Award("20元话费", 0.003d));
+        awardList.add(new Award("京东100元购物卡", 0.0005d));
+        awardList.add(new Award("未中奖", 0.1d));
 
-        Map<String,Integer> result = new HashMap<String,Integer>();
-        for(int i=0;i<10000;i++){
+        Map<String, Integer> result = new HashMap<String, Integer>();
+        for (int i = 0; i < 10000; i++) {
             Award award = Lottery01Util.lottery2(awardList);
             String title = award.getAwardTitle();
             Integer count = result.get(title);
@@ -40,35 +40,35 @@ public class TestLottery {
         }
 
         for (Map.Entry<String, Integer> entry : result.entrySet()) {
-            System.out.println(entry.getKey() + ", count=" + entry.getValue() +", reate="+ entry.getValue()/10000d);
+            System.out.println(entry.getKey() + ", count=" + entry.getValue() + ", reate=" + entry.getValue() / 10000d);
         }
     }
 
 
-    public void lotteryTest03(){
+    public void lotteryTest03() {
         //构造概率集合
         List<Double> list = new ArrayList<Double>();
         list.add(20d);
         list.add(30d);
         list.add(50d);
-        int a=0,b=0,c=0;
-        for (int i = 0; i < 100 ; i++) {
+        int a = 0, b = 0, c = 0;
+        for (int i = 0; i < 100; i++) {
             int tmp = Lottery01Util.lottery(list);
-            if (tmp == 0){
+            if (tmp == 0) {
                 a++;
-            }else if ( tmp == 1){
+            } else if (tmp == 1) {
                 b++;
-            }else if (tmp == 2){
+            } else if (tmp == 2) {
                 c++;
             }
         }
-        System.out.println("一等奖（20%）:"+a+" 次，二等奖（30%）:"+b+" 次，三等奖（50%）:"+c+" 次");
+        System.out.println("一等奖（20%）:" + a + " 次，二等奖（30%）:" + b + " 次，三等奖（50%）:" + c + " 次");
     }
 
     /**
      * 更细致
      */
-    public void lotteryTest02(){
+    public void lotteryTest02() {
         //构造概率集合
         List<Double> list = new ArrayList<Double>();
         list.add(20d);
@@ -78,15 +78,15 @@ public class TestLottery {
         double sumProbability = ll.getMaxElement();
 
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for(int i = 0; i < TIME; i++){
+        for (int i = 0; i < TIME; i++) {
             int index = ll.lottery();
-            if(map.containsKey(index)){
+            if (map.containsKey(index)) {
                 map.put(index, map.get(index) + 1);
-            }else{
+            } else {
                 map.put(index, 1);
             }
         }
-        for(int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             double probability = list.get(i) / sumProbability;
             list.set(i, probability);
         }
@@ -94,15 +94,14 @@ public class TestLottery {
     }
 
 
-    public static void iteratorMap(Map<Integer, Integer> map, List<Double> list){
-        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+    public static void iteratorMap(Map<Integer, Integer> map, List<Double> list) {
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             int index = entry.getKey();
-            int time  = entry.getValue();
+            int time = entry.getValue();
             LotteryResult result = new LotteryResult(index, TIME, time, list.get(index));
             System.out.println(result);
         }
     }
-
 
 
     public void lotteryTest01() {
@@ -148,7 +147,7 @@ public class TestLottery {
 //            }
 //            // 抽奖记录
 //            activityRecordDao.doInsert(new ActivityRecord(open_id, Award.WHEEL_AWARD_TYPE, wid, request.getRemoteAddr()));
-        }
+    }
 
 //       if (!lotteryGroupMap.isEmpty() && lotteryGroupMap.containsKey(ranking)) {
 //        LotteryGroup group = lotteryGroupMap.get(ranking);
@@ -189,7 +188,6 @@ public class TestLottery {
 //            lotteryGroupMap.put(nextRanking,nextGroup);
 //        }
 //    }
-
 
 
 }

@@ -5,7 +5,7 @@ package com.daily.pattern.state;
  * @Author ROCIA
  * @Date 2020/10/29
  */
-public class StoppingState extends LiftState{
+public class StoppingState extends LiftState {
 
     //停下了要开门
     @Override

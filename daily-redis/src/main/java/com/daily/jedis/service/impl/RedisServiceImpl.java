@@ -29,12 +29,13 @@ public class RedisServiceImpl implements RedisService {
 
     /**
      * 判断key是否存在
+     *
      * @param key
      * @return
      */
     @Override
     public boolean existsKey(String key) {
-        if (EmptyUtil.isNotEmpty(key)){
+        if (EmptyUtil.isNotEmpty(key)) {
             return redisTemplate.hasKey(key);
         }
         return false;
@@ -53,6 +54,7 @@ public class RedisServiceImpl implements RedisService {
 
     /**
      * 重命名 key，如果newKey不存在，才重命名
+     *
      * @param oldKey
      * @param newKey
      * @return 修改成功返回true
@@ -70,8 +72,8 @@ public class RedisServiceImpl implements RedisService {
     @Override
     public void deleteKey(String key) {
         //如果key存在，那么就会执行删除操作
-        if(existsKey(key)){
-            redisTemplate.delete( key );
+        if (existsKey(key)) {
+            redisTemplate.delete(key);
         }
     }
 
@@ -143,22 +145,22 @@ public class RedisServiceImpl implements RedisService {
     }
 
     /**
-     *    读取缓存
+     * 读取缓存
      */
     @Override
-    public Object get(String key){
-        ValueOperations<String,String> operations=redisTemplate.opsForValue();
-        return operations.get( key );
+    public Object get(String key) {
+        ValueOperations<String, String> operations = redisTemplate.opsForValue();
+        return operations.get(key);
     }
 
     /**
      * 写入缓存，不带时间
      */
     @Override
-    public  boolean  set(String key, String value) {
+    public boolean set(String key, String value) {
         boolean flag = false;
         try {
-            ValueOperations<String,String> operations = redisTemplate.opsForValue();
+            ValueOperations<String, String> operations = redisTemplate.opsForValue();
             operations.set(key, value);
             flag = true;
         } catch (Exception e) {
@@ -169,8 +171,9 @@ public class RedisServiceImpl implements RedisService {
 
     /**
      * 写入缓存，带时间
-     * @param key key
-     * @param value value
+     *
+     * @param key        key
+     * @param value      value
      * @param expireTime 过期时长，单位是秒
      */
     @Override

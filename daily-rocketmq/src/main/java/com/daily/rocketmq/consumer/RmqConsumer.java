@@ -21,7 +21,7 @@ import java.util.Properties;
 public class RmqConsumer {
 
     @Autowired
-     private AliRmqConfig aliRmqConfig;
+    private AliRmqConfig aliRmqConfig;
 
     private Consumer consumer;
 
@@ -31,8 +31,10 @@ public class RmqConsumer {
 
 
     //region  getConsumerProperties（普通消息）
+
     /**
      * 普通消息订阅参数
+     *
      * @return
      */
     public Properties getConsumerProperties() {
@@ -56,8 +58,10 @@ public class RmqConsumer {
 
 
     //region getBatchConsumerProperties（批量消息）
+
     /**
      * 创建BatchConsumer
+     *
      * @return
      */
     public Properties getBatchConsumerProperties() {
@@ -84,25 +88,29 @@ public class RmqConsumer {
 
 
     //region getOrderedConsumerProperties（顺序消息)
+
     /**
-     *  顺序消息订阅参数
+     * 顺序消息订阅参数
+     *
      * @return
      */
-     public Properties  getOrderedConsumerProperties(){
-         return getConsumerProperties();
-     }
+    public Properties getOrderedConsumerProperties() {
+        return getConsumerProperties();
+    }
     //endregion
 
 
     //region  getPullConsumerProperties  （自动拉取消息）
+
     /**
      * 自动拉取
+     *
      * @return
      */
-    public Properties getPullConsumerProperties(){
+    public Properties getPullConsumerProperties() {
         Properties properties = getDefaultConsumerProperties();
         properties.put(PropertyKeyConst.AUTO_COMMIT, aliRmqConfig.getAUTO_COMMIT());
-         return properties;
+        return properties;
     }
     //endregion
 
@@ -131,12 +139,12 @@ public class RmqConsumer {
         /**
          * 集群订阅方式 (默认)
          */
-         properties.put(PropertyKeyConst.MessageModel, aliRmqConfig.getMessageModel().trim());
+        properties.put(PropertyKeyConst.MessageModel, aliRmqConfig.getMessageModel().trim());
 
         /**
          * 设置客户端接入来源，默认ALIYUN
          */
-        properties.put(PropertyKeyConst.OnsChannel,"ALIYUN");
+        properties.put(PropertyKeyConst.OnsChannel, "ALIYUN");
         return properties;
     }
 
@@ -147,34 +155,38 @@ public class RmqConsumer {
 
 
     //region  subscribeGeneral 消费无序消息
+
     /**
      * 外部访问
+     *
      * @param tag 订阅过滤字符
-//     * @param messageListener 消息监听器
+     *            //     * @param messageListener 消息监听器
      */
 
     public void subscribeGeneral(String tag) {
         this.consumer = ONSFactory.createConsumer(getConsumerProperties());
         this.consumer.subscribe(aliRmqConfig.getTopic_general(), tag, new ConsumerGeneralListener());
         this.consumer.start();
-        System.out.println("普通消息订阅监听器，启动状态："+this.consumer.isStarted());
+        System.out.println("普通消息订阅监听器，启动状态：" + this.consumer.isStarted());
     }
 
     //endregion
 
 
     //region  subscribeOrder 消费有序消息
+
     /**
      * 外部订阅顺序消息
-     * @param tag  订阅过滤字符
-//     * @param topic  主题（顺序消息：全局/局部）
-//     * @param messageOrderListener 监听器
+     *
+     * @param tag 订阅过滤字符
+     *            //     * @param topic  主题（顺序消息：全局/局部）
+     *            //     * @param messageOrderListener 监听器
      */
-    public void subscribeOrder(String topic,String tag) {
+    public void subscribeOrder(String topic, String tag) {
         this.orderConsumer = ONSFactory.createOrderedConsumer(getOrderedConsumerProperties());
-        this.orderConsumer.subscribe(topic,tag,new ConsumerOrderListener());
+        this.orderConsumer.subscribe(topic, tag, new ConsumerOrderListener());
         this.orderConsumer.start();
-        System.out.println("订阅全局/分区消息订阅监听器，启动状态："+ this.orderConsumer.isStarted());
+        System.out.println("订阅全局/分区消息订阅监听器，启动状态：" + this.orderConsumer.isStarted());
     }
     //endregion
 
@@ -207,7 +219,6 @@ public class RmqConsumer {
 //        }
 //    }
     //endregion
-
 
 
 }

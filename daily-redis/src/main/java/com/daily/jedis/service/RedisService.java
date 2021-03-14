@@ -91,14 +91,14 @@ public interface RedisService {
     void persistKey(String key);
 
     /**
-     *   读取缓存
+     * 读取缓存
      */
     Object get(String key);
 
     /**
      * 写入缓存，不带时间
      */
-    boolean  set(String key, String value);
+    boolean set(String key, String value);
 
     /**
      * 写入缓存，带时间

@@ -10,9 +10,9 @@ import java.util.Date;
  */
 public class DateUtil {
 
-    public static String convertDateToStr(Date date,String pattern){
+    public static String convertDateToStr(Date date, String pattern) {
         SimpleDateFormat format = new SimpleDateFormat(pattern);
-       return format.format(date);
+        return format.format(date);
     }
 
 }

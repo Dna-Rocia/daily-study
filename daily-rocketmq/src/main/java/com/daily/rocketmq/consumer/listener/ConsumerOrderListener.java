@@ -19,8 +19,6 @@ public class ConsumerOrderListener implements MessageOrderListener {
      * 这样多个线程就可以共用，但是无法调用父类的方法和变量
      */
 //	protected static TestDao testDao;
-
-
     @Override
     public OrderAction consume(Message message, ConsumeOrderContext consumeOrderContext) {
         try {
@@ -29,13 +27,13 @@ public class ConsumerOrderListener implements MessageOrderListener {
             byte[] body = message.getBody();
             String msg = new String(body);//获取到接收的消息，由于接收到的是byte数组，所以需要转换成字符串
 
-            System.out.println("part-order&"+message.getTopic()+"-Receive，msgId: " + message.getMsgID()+",tag:"+message.getTag()+",shardingKey:"+message.getShardingKey());
+            System.out.println("part-order&" + message.getTopic() + "-Receive，msgId: " + message.getMsgID() + ",tag:" + message.getTag() + ",shardingKey:" + message.getShardingKey());
 
             //TODO 业务逻辑，自行设计
             //testDao.insertDatas();//持久层，这里不再展述，自行补全
 
             Long endTime = System.currentTimeMillis();
-            System.out.println("单次消费耗时："+(endTime-startTime)/1000+"\n msg:"+msg);
+            System.out.println("单次消费耗时：" + (endTime - startTime) / 1000 + "\n msg:" + msg);
         } catch (Exception e) {
             logger.error("MessageListener.consume error:" + e.getMessage(), e);
         }

@@ -9,10 +9,10 @@ import org.apache.commons.lang.StringUtils;
  */
 public class StringUtil {
 
-    public static String getString(Object o){
-        if(o==null || StringUtils.isEmpty(o.toString()) || StringUtils.isBlank(o.toString())){
+    public static String getString(Object o) {
+        if (o == null || StringUtils.isEmpty(o.toString()) || StringUtils.isBlank(o.toString())) {
             return null;
-        }else{
+        } else {
             return o.toString();
         }
     }

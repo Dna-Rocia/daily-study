@@ -19,8 +19,8 @@ public class CoffeeTest {
         String str2 = sugarCoffee.make("水");
         Double a2 = sugarCoffee.cost();
 
-        System.out.println(str1 +" === "+ a1);
-        System.out.println(str2 +" === "+ a2);
+        System.out.println(str1 + " === " + a1);
+        System.out.println(str2 + " === " + a2);
     }
 
 }

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 import java.util.Properties;
 
 /**
- * @Description  生产者实例的封装
+ * @Description 生产者实例的封装
  * @Author ROCIA
  * @Date 2020/7/17
  */
@@ -29,7 +29,7 @@ public class RmqProducer implements InitializingBean, DisposableBean {
 
     private Producer producer = null;
 
-    private  OrderProducer orderProducer = null;
+    private OrderProducer orderProducer = null;
 
     private TransactionProducer transactionProducer = null;
 
@@ -39,14 +39,15 @@ public class RmqProducer implements InitializingBean, DisposableBean {
         System.out.println("消息发布者实例，开始实例化 ！！！");
         this.producer = this.createProducerInstance();
         this.orderProducer = this.createOrderProducerInstance();
-        this.transactionProducer = this.createTransactionProducerInstance(new LocalTransactionCheckAndExecuter() );
+        this.transactionProducer = this.createTransactionProducerInstance(new LocalTransactionCheckAndExecuter());
         System.out.println("消息发布者实例，结束实例化 ！！！");
     }
 
 
     /**
-     *  // 在应用退出前，销毁 Producer 对象。
-     *  // 注意：如果不销毁也没有问题。 producer.shutdown();
+     * // 在应用退出前，销毁 Producer 对象。
+     * // 注意：如果不销毁也没有问题。 producer.shutdown();
+     *
      * @throws Exception
      */
     @Override
@@ -92,7 +93,7 @@ public class RmqProducer implements InitializingBean, DisposableBean {
         /**
          * 设置客户端接入来源，默认ALIYUN
          */
-        properties.put(PropertyKeyConst.OnsChannel,"ALIYUN");
+        properties.put(PropertyKeyConst.OnsChannel, "ALIYUN");
         return properties;
     }
 
@@ -142,40 +143,40 @@ public class RmqProducer implements InitializingBean, DisposableBean {
     //endregion
 
 
-
     //region   createProducerInstance 创建Producer
+
     /**
      * 返回创建的{@link Producer}实例是线程安全, 可复用, 发送各个主题. 一般情况下, 一个进程中构建一个实例足够满足发送消息的需求.
      */
-    private Producer createProducerInstance(){
-        DefaultMQProducer a =new DefaultMQProducer();
+    private Producer createProducerInstance() {
+        DefaultMQProducer a = new DefaultMQProducer();
         a.setRetryTimesWhenSendFailed(1);
         this.producer = ONSFactory.createProducer(getProducerProperties());
         // 在发送消息前，必须调用 start 方法来启动 Producer，只需调用一次即可
         this.producer.start();
-        return  this.producer;
+        return this.producer;
     }
 
     //endregion
 
 
     //region  createOrderProducerInstance 创建顺序Producer
-    private OrderProducer createOrderProducerInstance(){
+    private OrderProducer createOrderProducerInstance() {
         this.orderProducer = ONSFactory.createOrderProducer(getOrderProducerProperties());
         // 在发送消息前，必须调用 start 方法来启动 Producer，只需调用一次即可
         this.orderProducer.start();
-        return  this.orderProducer;
+        return this.orderProducer;
     }
 
     //endregion
 
 
     //region  getTransactionProducerInstance   创建事务Producer
-    private TransactionProducer createTransactionProducerInstance(LocalTransactionChecker  LocalTransactionChecker){
-         this.transactionProducer = ONSFactory.createTransactionProducer(getTransactionProperties(), LocalTransactionChecker);
+    private TransactionProducer createTransactionProducerInstance(LocalTransactionChecker LocalTransactionChecker) {
+        this.transactionProducer = ONSFactory.createTransactionProducer(getTransactionProperties(), LocalTransactionChecker);
         // 在发送消息前，必须调用 start 方法来启动 Producer，只需调用一次即可
         this.transactionProducer.start();
-        return  this.transactionProducer;
+        return this.transactionProducer;
     }
 
     //endregion

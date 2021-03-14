@@ -18,7 +18,7 @@ public class JedisServiceImpl implements JedisService {
 
     @Override
     public void set(String key, String value) {
-        this.jedisConfig.set(key,value);
+        this.jedisConfig.set(key, value);
     }
 
     @Override
@@ -63,17 +63,17 @@ public class JedisServiceImpl implements JedisService {
 
     @Override
     public void lrem(String key, long count, String value) {
-        this.jedisConfig.lrem(key,count,value);
+        this.jedisConfig.lrem(key, count, value);
     }
 
     @Override
     public void sadd(String key, String value, int seconds) {
-        this.jedisConfig.sadd(key,value,seconds);
+        this.jedisConfig.sadd(key, value, seconds);
     }
 
     @Override
     public Long incr(String key) {
-       return this.jedisConfig.incr(key);
+        return this.jedisConfig.incr(key);
     }
 
     @Override

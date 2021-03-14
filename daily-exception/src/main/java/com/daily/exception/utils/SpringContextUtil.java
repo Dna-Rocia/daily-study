@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Lazy(false)
-public class SpringContextUtil{
+public class SpringContextUtil {
 
     private static ApplicationContext applicationContext;
 
@@ -20,7 +20,7 @@ public class SpringContextUtil{
     }
 
     public static String getApplicationConfigurationPath() {
-        if (applicationContext == null){
+        if (applicationContext == null) {
             return null;
         }
         MutablePropertySources mutablePropertySources = ((ConfigurableApplicationContext) applicationContext).getEnvironment().getPropertySources();

@@ -7,11 +7,11 @@ package com.daily.pattern.decorator.coffee;
  */
 public class Coffee {
 
-    String make(String water){
-        return water +"咖啡";
+    String make(String water) {
+        return water + "咖啡";
     }
 
-    Double cost(){
+    Double cost() {
         return 10d;
     }
 

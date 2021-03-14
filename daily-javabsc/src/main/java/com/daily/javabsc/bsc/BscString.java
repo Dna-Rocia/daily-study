@@ -15,11 +15,11 @@ public class BscString {
         bscString.test();
     }
 
-    private void test(){
+    private void test() {
         String s = "1,2,10,3";
         String[] sarr = s.split(",");
         List<Integer> list = new ArrayList<>();
-        for (String str:sarr ) {
+        for (String str : sarr) {
             list.add(Integer.parseInt(str));
         }
         System.out.println(list.contains(1));

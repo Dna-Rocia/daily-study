@@ -5,7 +5,7 @@ package com.daily.pattern.decorator.shape;
  * @Author ROCIA
  * @Date 2020/11/2
  */
-public abstract class ShapeDecorator implements Shape{
+public abstract class ShapeDecorator implements Shape {
 
     protected Shape decoratorShape;
 

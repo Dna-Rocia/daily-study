@@ -23,20 +23,20 @@ public class RMQServiceImpl implements RMQService {
 
     @Override
     public void sendGeneral(String tag) {
-        Message message = new Message(this.conf.getTopic_general(),tag,"1","普通消息测试".getBytes());
+        Message message = new Message(this.conf.getTopic_general(), tag, "1", "普通消息测试".getBytes());
         this.sendUtil.sendAsync(message);
     }
 
     @Override
-    public void sendOrder(String topic,String tag) {
-        Message message = new Message(topic,tag,"2","分区顺序消息测试".getBytes());
-        this.sendUtil.sendOrder(message,"A");
+    public void sendOrder(String topic, String tag) {
+        Message message = new Message(topic, tag, "2", "分区顺序消息测试".getBytes());
+        this.sendUtil.sendOrder(message, "A");
     }
 
     @Override
     public void sendTransaction(String tag) {
-        Message message = new Message(this.conf.getTopic_transaction(),tag,"3","事务消息测试".getBytes());
-        this.sendUtil.sendTransaction(message,new LocalTransactionCheckAndExecuter(),"2");
+        Message message = new Message(this.conf.getTopic_transaction(), tag, "3", "事务消息测试".getBytes());
+        this.sendUtil.sendTransaction(message, new LocalTransactionCheckAndExecuter(), "2");
     }
 
 

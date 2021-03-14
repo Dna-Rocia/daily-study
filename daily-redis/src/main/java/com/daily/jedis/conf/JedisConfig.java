@@ -12,8 +12,8 @@ import org.apache.commons.lang.StringUtils;
 
 
 /**
- * @Description  操作 redis 库方式一
- *  jedis 是redis 面向java 的一个客户端
+ * @Description 操作 redis 库方式一
+ * jedis 是redis 面向java 的一个客户端
  * @Author ROCIA
  * @Date 2020/8/17
  */

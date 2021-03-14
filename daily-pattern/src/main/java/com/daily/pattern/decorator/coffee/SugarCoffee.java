@@ -14,8 +14,9 @@ public class SugarCoffee {
     }
 
     String make(String water) {
-        return this.coffee.make(water) +"糖";
+        return this.coffee.make(water) + "糖";
     }
+
     Double cost() {
         return this.coffee.cost() + 1;
     }

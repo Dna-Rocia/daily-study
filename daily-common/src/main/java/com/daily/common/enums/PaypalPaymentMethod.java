@@ -6,5 +6,5 @@ package com.daily.common.enums;
  * @CreateTime 2018-07-31-14:22
  */
 public enum PaypalPaymentMethod {
-	credit_card, paypal
+    credit_card, paypal
 }

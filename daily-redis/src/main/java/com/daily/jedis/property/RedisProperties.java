@@ -68,9 +68,9 @@ public class RedisProperties {
     }
 
     public void setPassword(String password) {
-        if (EmptyUtil.isNotEmpty(password)){
+        if (EmptyUtil.isNotEmpty(password)) {
             password = AESUtil.aesDecode(password);
-            System.out.println("redis 密码："+ password);
+            System.out.println("redis 密码：" + password);
         }
         this.password = password;
     }

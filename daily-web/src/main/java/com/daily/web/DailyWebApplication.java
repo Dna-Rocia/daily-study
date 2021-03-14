@@ -17,10 +17,10 @@ public class DailyWebApplication {
 
     //程序可以直接在此启动
     @RequestMapping("/hello")
-    public Response<String> index(){
-        try{
+    public Response<String> index() {
+        try {
             test("3");
-        }catch (CustomException e){
+        } catch (CustomException e) {
             System.out.println(e.toString());
             return Response.buildFailResponse(e);
         }
@@ -40,7 +40,7 @@ public class DailyWebApplication {
 //        springApplication.run(args);
     }
 
-    private void test(String pick){
+    private void test(String pick) {
         if (!"2".equals(pick)) {
             throw new CustomException("ERROR");
         }

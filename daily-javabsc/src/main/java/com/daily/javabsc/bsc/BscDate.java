@@ -19,14 +19,13 @@ import java.util.*;
 public class BscDate {
 
     public static void main(String[] args) {
-    Date2();
+        Date2();
 
     }
 
 
-
-    private static void Date1(){
-        Date  nowDate = new Date();
+    private static void Date1() {
+        Date nowDate = new Date();
 //        assert ol != null;  //assert 断言只适用于调试，切勿使用在业务逻辑中
         Calendar ol = Calendar.getInstance();
         if (ol != null) {
@@ -38,9 +37,9 @@ public class BscDate {
     }
 
 
-    private static void Date2(){
+    private static void Date2() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date  nowDate = new Date();
+        Date nowDate = new Date();
         Date ol = null; //new Date("2020-10-13 20:00:00");
         try {
             ol = dateFormat.parse("2020-10-13 20:00:00");
@@ -53,7 +52,8 @@ public class BscDate {
             System.out.println(ol.after(nowDate));
         }
     }
-    static class Critical{
+
+    static class Critical {
         private BigDecimal min;
         private BigDecimal max;
         private boolean isInterval;

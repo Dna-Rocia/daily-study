@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Description
-
-//客户端类
-
+ * @Description //客户端类
  * @Author ROCIA
  * @Date 2020/10/29
  */
@@ -23,7 +20,7 @@ public class Client {
     /**
      * 单纯享元模式
      */
-    private void flyweight(){
+    private void flyweight() {
         FlyweightFactory factory = new FlyweightFactory();
         Flyweight fly = factory.factory('a');
         fly.operation("First Call");
@@ -38,7 +35,7 @@ public class Client {
     /**
      * 复合享元模式
      */
-    private void compositeFlyweight(){
+    private void compositeFlyweight() {
         List<Character> compositeState = new ArrayList<Character>();
         compositeState.add('c');
         compositeState.add('d');

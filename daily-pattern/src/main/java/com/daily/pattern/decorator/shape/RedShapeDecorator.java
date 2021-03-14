@@ -5,18 +5,18 @@ package com.daily.pattern.decorator.shape;
  * @Author ROCIA
  * @Date 2020/11/2
  */
-public class RedShapeDecorator extends ShapeDecorator{
+public class RedShapeDecorator extends ShapeDecorator {
 
     public RedShapeDecorator(Shape decoratorShape) {
         super(decoratorShape);
     }
 
-    public void draw(){
+    public void draw() {
         decoratorShape.draw();
         redBorder();
     }
 
-    private void redBorder(){
+    private void redBorder() {
         System.out.print("，颜色是：红色的");
     }
 

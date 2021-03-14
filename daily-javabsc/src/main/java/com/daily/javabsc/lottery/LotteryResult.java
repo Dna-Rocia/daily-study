@@ -47,7 +47,7 @@ public class LotteryResult {
         this.realProbability = realProbability;
     }
 
-    public LotteryResult(){
+    public LotteryResult() {
 
     }
 
@@ -59,8 +59,8 @@ public class LotteryResult {
 
     }
 
-    public String toString(){
+    public String toString() {
         return "索引值：" + index + "，抽奖总数：" + sumTime + "，抽中次数：" + time + "，概率："
-                + realProbability + "，实际概率：" + (double)time/sumTime;
+                + realProbability + "，实际概率：" + (double) time / sumTime;
     }
 }

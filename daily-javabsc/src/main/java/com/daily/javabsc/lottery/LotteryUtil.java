@@ -87,15 +87,15 @@ public class LotteryUtil {
         double sumProbability = ll.getMaxElement();
 
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for(int i = 0; i < 10000; i++){
+        for (int i = 0; i < 10000; i++) {
             int index = ll.lottery();
-            if(map.containsKey(index)){
+            if (map.containsKey(index)) {
                 map.put(index, map.get(index) + 1);
-            }else{
+            } else {
                 map.put(index, 1);
             }
         }
-        for(int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             double probability = list.get(i) / sumProbability;
             list.set(i, probability);
         }

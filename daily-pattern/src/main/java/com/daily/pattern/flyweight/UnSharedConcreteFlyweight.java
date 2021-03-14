@@ -5,8 +5,7 @@ package com.daily.pattern.flyweight;
  * @Author ROCIA
  * @Date 2020/10/29
  */
-public class UnSharedConcreteFlyweight implements Flyweight{
-
+public class UnSharedConcreteFlyweight implements Flyweight {
 
 
     @Override
